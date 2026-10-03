@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SearchHandler xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:models="clr-namespace:petshop.DataAcces"
+               x:Class="petshop.Handler.CategoriaBusquedaHandler"
+               Placeholder="Buscar categoría..."
+               ShowsResults="True"
+               SearchBoxVisibility="Expanded">
+
+    <SearchHandler.ItemTemplate>
+        <DataTemplate x:DataType="models:Category">
+            <Grid Padding="12,10"
+                  ColumnDefinitions="Auto,*,Auto"
+                  ColumnSpacing="12"
+                  BackgroundColor="#1E1E1E">
+
+                <Border BackgroundColor="#2D1F47"
+                        Stroke="#A98BFF"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 8"
+                        WidthRequest="36"
+                        HeightRequest="36"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                    <Label Text="🗃️"
+                           FontSize="18"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+
+                <VerticalStackLayout Grid.Column="1"
+                                     VerticalOptions="Center"
+                                     Spacing="2">
+                    <Label Text="{Binding Nombre}"
+                           FontSize="15"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="{Binding Id, StringFormat='Código: #{0:D3}'}"
+                           FontSize="12"
+                           TextColor="#888888" />
+                </VerticalStackLayout>
+
+                <Label Grid.Column="2"
+                       Text="➜"
+                       TextColor="#A98BFF"
+                       FontSize="16"
+                       VerticalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+    </SearchHandler.ItemTemplate>
+
+</SearchHandler>
+

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="petshop.Views.MainContainer"
+    BackgroundColor="#121212"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="*,70">
+
+        <!-- ================================= -->
+        <!-- CONTENIDO DE LA PÁGINA -->
+        <!-- ================================= -->
+
+        <ContentView
+            x:Name="Contenido"
+            Grid.Row="0" />
+
+
+        <!-- ================================= -->
+        <!-- NAVBAR -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="1"
+            BackgroundColor="#1E1E1E"
+            ColumnDefinitions="*,*,*,*"
+            Padding="5"
+            ZIndex="10">
+
+
+            <!-- ================= -->
+            <!-- HOME -->
+            <!-- ================= -->
+
+            <Border
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                StrokeThickness="0"
+                Padding="5">
+
+                <Border.GestureRecognizers>
+
+                    <TapGestureRecognizer
+                        Tapped="Home_Tapped" />
+
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="2">
+
+                    <Label
+                        Text="🏠"
+                        FontSize="22"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Home"
+                        FontSize="11"
+                        TextColor="#A98BFF"
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+
+            <!-- ================= -->
+            <!-- CLIENTES -->
+            <!-- ================= -->
+
+            <Border
+                Grid.Column="1"
+                BackgroundColor="Transparent"
+                StrokeThickness="0"
+                Padding="5">
+
+                <Border.GestureRecognizers>
+
+                    <TapGestureRecognizer
+                        Tapped="Clientes_Tapped" />
+
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="2">
+
+                    <Label
+                        Text="👤"
+                        FontSize="22"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Clientes"
+                        FontSize="11"
+                        TextColor="#AAAAAA"
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+
+            <!-- ================= -->
+            <!-- PRODUCTOS -->
+            <!-- ================= -->
+
+            <Border
+                Grid.Column="2"
+                BackgroundColor="Transparent"
+                StrokeThickness="0"
+                Padding="5">
+
+                <Border.GestureRecognizers>
+
+                    <TapGestureRecognizer
+                        Tapped="Productos_Tapped" />
+
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="2">
+
+                    <Label
+                        Text="📦"
+                        FontSize="22"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Productos"
+                        FontSize="11"
+                        TextColor="#AAAAAA"
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+
+            <!-- ================= -->
+            <!-- CATEGORÍAS -->
+            <!-- ================= -->
+
+            <Border
+                Grid.Column="3"
+                BackgroundColor="Transparent"
+                StrokeThickness="0"
+                Padding="5">
+
+                <Border.GestureRecognizers>
+
+                    <TapGestureRecognizer
+                        Tapped="Categorias_Tapped" />
+
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="2">
+
+                    <Label
+                        Text="🗃️"
+                        FontSize="22"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Categorías"
+                        FontSize="11"
+                        TextColor="#AAAAAA"
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

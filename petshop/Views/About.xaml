@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<FlyoutPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:petshop.Views"
+    x:Class="petshop.Views.About"
+    FlyoutLayoutBehavior="Popover">
+
+    <!-- ========================= -->
+    <!-- MENÚ LATERAL -->
+    <!-- ========================= -->
+
+    <FlyoutPage.Flyout>
+
+        <ContentPage
+            BackgroundColor="#1E1E1E"
+            Title="Menú">
+
+            <VerticalStackLayout
+                Padding="15,30"
+                Spacing="8">
+
+                <!-- TÍTULO -->
+
+                <Label
+                    Text="🐾 PetShop"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,25" />
+
+
+                <!-- HOME -->
+
+                <Border
+                    x:Name="btnMenuHome"
+                    BackgroundColor="#2A2A2A"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="12">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnHomeClicked" />
+                    </Border.GestureRecognizers>
+
+                    <HorizontalStackLayout
+                        Spacing="12">
+
+                        <Label
+                            Text="⌂"
+                            FontSize="20"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            Text="Home"
+                            FontSize="16"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+
+                    </HorizontalStackLayout>
+
+                </Border>
+
+
+                <!-- ABOUT -->
+
+                <Border
+                    x:Name="btnMenuAbout"
+                    BackgroundColor="Transparent"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="12">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnAboutClicked" />
+                    </Border.GestureRecognizers>
+
+                    <HorizontalStackLayout
+                        Spacing="12">
+
+                        <Label
+                            Text="ⓘ"
+                            FontSize="20"
+                            TextColor="#BBBBBB"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            Text="Acerca de mi Tienda"
+                            FontSize="16"
+                            TextColor="#BBBBBB"
+                            VerticalOptions="Center" />
+
+                    </HorizontalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ContentPage>
+
+    </FlyoutPage.Flyout>
+
+
+    <!-- ========================= -->
+    <!-- CONTENIDO PRINCIPAL -->
+    <!-- ========================= -->
+
+    <FlyoutPage.Detail>
+
+        <NavigationPage>
+
+            <x:Arguments>
+
+                <!-- AQUÍ ESTÁ EL CAMBIO -->
+                <views:MainContainer />
+
+            </x:Arguments>
+
+        </NavigationPage>
+
+    </FlyoutPage.Detail>
+
+</FlyoutPage>

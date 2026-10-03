@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="petshop.Views.DetalleCliente"
+             Title="Detalle del Cliente"
+             BackgroundColor="#121212"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="20">
+
+            <!-- BOTÓN VOLVER -->
+            <HorizontalStackLayout Spacing="8">
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Volver_Tapped" />
+                </HorizontalStackLayout.GestureRecognizers>
+                <Label Text="←"
+                       FontSize="22"
+                       TextColor="#A98BFF"
+                       VerticalOptions="Center" />
+                <Label Text="Volver a Clientes"
+                       FontSize="16"
+                       TextColor="#A98BFF"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold" />
+            </HorizontalStackLayout>
+
+            <!-- ENCABEZADO -->
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Detalle del Cliente"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+                <Label Text="Información completa registrada"
+                       FontSize="14"
+                       TextColor="#888888" />
+            </VerticalStackLayout>
+
+            <!-- TARJETA PRINCIPAL (AVATAR Y NOMBRE) -->
+            <Border BackgroundColor="#1E1E1E"
+                    Stroke="#333333"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="20">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Border BackgroundColor="#2A2A2A"
+                            Stroke="#A98BFF"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 40"
+                            WidthRequest="80"
+                            HeightRequest="80"
+                            HorizontalOptions="Center">
+                        <Label Text="👤"
+                               FontSize="36"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
+
+                    <Label x:Name="lblNombreCompleto"
+                           Text="Nombre del Cliente"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center" />
+
+                    <Border BackgroundColor="#2D1F47"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="12,5"
+                            HorizontalOptions="Center">
+                        <Label Text="Cliente Activo"
+                               FontSize="12"
+                               TextColor="#A98BFF"
+                               FontAttributes="Bold" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- SECCIÓN: DATOS -->
+            <Label Text="Datos del Cliente"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   Margin="0,5,0,0" />
+
+            <!-- TARJETA: ID -->
+            <Border BackgroundColor="#1E1E1E"
+                    Stroke="#333333"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="16">
+                <Grid ColumnDefinitions="40,*">
+                    <Label Text="🆔" FontSize="20" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Código de Cliente" FontSize="12" TextColor="#888888" />
+                        <Label x:Name="lblId" Text="#0" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <!-- TARJETA: NOMBRE -->
+            <Border BackgroundColor="#1E1E1E"
+                    Stroke="#333333"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="16">
+                <Grid ColumnDefinitions="40,*">
+                    <Label Text="🏷️" FontSize="20" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Nombre" FontSize="12" TextColor="#888888" />
+                        <Label x:Name="lblNombre" Text="" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <!-- TARJETA: APELLIDO -->
+            <Border BackgroundColor="#1E1E1E"
+                    Stroke="#333333"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="16">
+                <Grid ColumnDefinitions="40,*">
+                    <Label Text="👤" FontSize="20" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Apellido" FontSize="12" TextColor="#888888" />
+                        <Label x:Name="lblApellido" Text="" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <!-- TARJETA: DIRECCIÓN -->
+            <Border BackgroundColor="#1E1E1E"
+                    Stroke="#333333"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="16">
+                <Grid ColumnDefinitions="40,*">
+                    <Label Text="📍" FontSize="20" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Dirección" FontSize="12" TextColor="#888888" />
+                        <Label x:Name="lblDireccion" Text="" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <!-- BOTÓN INFERIOR VOLVER -->
+            <Button Text="Volver a la Lista"
+                    BackgroundColor="#A98BFF"
+                    TextColor="#121212"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    Margin="0,10,0,20"
+                    Clicked="Volver_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+

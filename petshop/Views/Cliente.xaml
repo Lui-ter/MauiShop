@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:handlers="clr-namespace:petshop.Handler"
+             x:Class="petshop.Views.Cliente"
+             Title="Cliente">
+
+    <Shell.SearchHandler>
+        <handlers:ClienteBusquedaHandler
+            Placeholder="Buscar clientes..."
+            ShowsResults="True" />
+    </Shell.SearchHandler>
+
+    <VerticalStackLayout x:Name="container">
+        <Label
+            Text="Clientes"
+            FontSize="30"
+            FontAttributes="Bold"
+            TextColor="White" />
+
+        <Label
+            Text="Clientes disponibles"
+            FontSize="15"
+            TextColor="#888888" />        
+    </VerticalStackLayout>
+</ContentPage>
