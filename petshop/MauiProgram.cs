@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using petshop.DataAcces;
+using petshop.Views;
 
 namespace petshop
 {
@@ -27,6 +28,9 @@ namespace petshop
             dbContext.Dispose();
 
             return builder.Build();
+
+            Routing.RegisterRoute(nameof(Views.DetalleProducto), typeof(Views.DetalleProducto));
+            Routing.RegisterRoute(nameof(Views.HelpSupportDetailPage), typeof(Views.HelpSupportDetailPage));
         }
     }
 }

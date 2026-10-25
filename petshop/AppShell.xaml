@@ -10,5 +10,8 @@
     <ShellContent
         ContentTemplate="{DataTemplate views:About}"
         Route="About" />
+    <ShellContent
+        ContentTemplate="{DataTemplate views:HelpSupportPage}"
+        Route="HelpSupportPage" />
 
 </Shell>

@@ -84,5 +84,10 @@ public partial class MainContainer : ContentPage
     {
         Contenido.Content = new AboutPage().Content;
     }
+
+    public void MostrarHelp()
+    {
+        Contenido.Content = new HelpSupportPage().Content;
+    }
 }
 

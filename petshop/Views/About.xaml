@@ -99,6 +99,39 @@
 
                 </Border>
 
+                <!-- Help -->
+
+                <Border
+                    x:Name="btnMenuHelp"
+                    BackgroundColor="Transparent"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="12">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnHelpClicked" />
+                    </Border.GestureRecognizers>
+
+                    <HorizontalStackLayout
+                        Spacing="12">
+
+                        <Label
+                            Text="ⓘ"
+                            FontSize="20"
+                            TextColor="#BBBBBB"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            Text="HelpSupport"
+                            FontSize="16"
+                            TextColor="#BBBBBB"
+                            VerticalOptions="Center" />
+
+                    </HorizontalStackLayout>
+
+                </Border>
+
             </VerticalStackLayout>
 
         </ContentPage>

@@ -16,6 +16,10 @@ public partial class About : FlyoutPage
     {
         MostrarAbout();
     }
+    private void OnHelpClicked(object? sender, TappedEventArgs e)
+    {
+        MostrarHelp();
+    }
 
     public void MostrarHome()
     {
@@ -47,6 +51,25 @@ public partial class About : FlyoutPage
         }
 
         btnMenuHome.BackgroundColor = Colors.Transparent;
+        btnMenuAbout.BackgroundColor = Color.FromArgb("#2A2A2A");
+        IsPresented = false;
+    }
+
+    public void MostrarHelp()
+    {
+        if (MainContainer.Current != null && Detail is NavigationPage nav && nav.CurrentPage is MainContainer)
+        {
+            MainContainer.Current.MostrarHelp();
+        }
+        else
+        {
+            var mc = new MainContainer();
+            Detail = new NavigationPage(mc);
+            mc.MostrarHelp();
+        }
+
+        btnMenuHome.BackgroundColor = Colors.Transparent;
+        btnMenuAbout.BackgroundColor = Colors.Transparent;
         btnMenuAbout.BackgroundColor = Color.FromArgb("#2A2A2A");
         IsPresented = false;
     }
