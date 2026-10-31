@@ -1,3 +1,7 @@
+using petshop.DataAcces;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+
 namespace petshop.Views;
 
 public partial class HelpSupportPage : ContentPage
@@ -14,7 +18,39 @@ public partial class HelpSupportPage : ContentPage
     }
 }
 
-public class HelpSupportData
+public class HelpSupportData : BindingUtilObject
 {
-    public int visitasPendientes { get; set; }
+    public HelpSupportData()
+    {
+        var database = new ShopDbContext();
+        Clients = new ObservableCollection<Client>(database.Clients);
+    }
+
+    public int _visitasPendientes;
+    public int visitasPendientes
+    {
+        get { return _visitasPendientes; }
+        set
+        {
+            if(_visitasPendientes != value)
+            {
+                _visitasPendientes = value;
+                RaisePropertyChanged();
+            }
+        }
+    }
+    private ObservableCollection<Client> _clients;
+
+    public ObservableCollection<Client> Clients
+    {
+        get { return _clients; }
+        set
+        {
+            if (Clients != value)
+            {
+                _clients = value;
+                RaisePropertyChanged();
+            }
+        }
+    }
 }
