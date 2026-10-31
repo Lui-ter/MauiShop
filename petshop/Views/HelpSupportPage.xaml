@@ -9,12 +9,16 @@
         <views:HelpSupportData x:Key="data" visitasPendientes="5" />
     </ContentPage.Resources>
     
-    <VerticalStackLayout>
+    <Grid>
         <Label 
                 Text="{Binding Source={StaticResource data},
                 Path=visitasPendientes,
                 Mode=OneWay}"
                />
-        <Button Text="Actualizar" Clicked="Button_Clicked" />
-    </VerticalStackLayout>
+        <CollectionView 
+            Grid.Row="1"
+            ItemsSource="{Binding Source={StaticResource data},
+            Path=Clients,
+            Mode=OneWay}"/>
+    </Grid>
 </ContentPage>
