@@ -5,20 +5,16 @@
              xmlns:views="clr-namespace:petshop.Views"
              Title="HelpSupportPage">
 
-    <ContentPage.Resources>
-        <views:HelpSupportData x:Key="data" visitasPendientes="5" />
-    </ContentPage.Resources>
-    
-    <Grid>
-        <Label 
-                Text="{Binding Source={StaticResource data},
-                Path=visitasPendientes,
-                Mode=OneWay}"
-               />
+    <ContentPage.BindingContext>
+        <views:HelpSupportData/>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*">
+        <Label Text="{Binding Clients.Count,Mode=OneWay}"/>
         <CollectionView 
             Grid.Row="1"
-            ItemsSource="{Binding Source={StaticResource data},
-            Path=Clients,
-            Mode=OneWay}"/>
+            SelectionMode="Single"
+            SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}"
+            ItemsSource="{Binding Clients,Mode=OneWay}"/>
     </Grid>
 </ContentPage>

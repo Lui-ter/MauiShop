@@ -24,6 +24,16 @@ public class HelpSupportData : BindingUtilObject
     {
         var database = new ShopDbContext();
         Clients = new ObservableCollection<Client>(database.Clients);
+        PropertyChanged += HelpSupportData_PropertyChanged;
+    }
+
+    private async void HelpSupportData_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(ClienteSeleccionado))
+        {
+            var uri = $"{nameof(HelpSupportDetailPage)}?id={ClienteSeleccionado.Id}";
+            await Shell.Current.GoToAsync(uri);
+        }
     }
 
     public int _visitasPendientes;
@@ -32,7 +42,7 @@ public class HelpSupportData : BindingUtilObject
         get { return _visitasPendientes; }
         set
         {
-            if(_visitasPendientes != value)
+            if (_visitasPendientes != value)
             {
                 _visitasPendientes = value;
                 RaisePropertyChanged();
@@ -49,6 +59,21 @@ public class HelpSupportData : BindingUtilObject
             if (Clients != value)
             {
                 _clients = value;
+                RaisePropertyChanged();
+            }
+        }
+    }
+
+    public Client _clienteSeleccionado;
+
+    public Client ClienteSeleccionado
+    {
+        get { return _clienteSeleccionado; }
+        set
+        {
+            if (_clienteSeleccionado != value)
+            {
+                _clienteSeleccionado = value;
                 RaisePropertyChanged();
             }
         }
