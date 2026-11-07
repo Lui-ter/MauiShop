@@ -31,8 +31,11 @@ public class HelpSupportData : BindingUtilObject
     {
         if (e.PropertyName == nameof(ClienteSeleccionado))
         {
-            var uri = $"{nameof(HelpSupportDetailPage)}?id={ClienteSeleccionado.Id}";
-            await Shell.Current.GoToAsync(uri);
+            if (Application.Current?.Windows.FirstOrDefault()?.Page is About
+                { Detail: NavigationPage navigation })
+            {
+                await navigation.PushAsync(new HelpSupportDetailPage(ClienteSeleccionado.Id));
+            }
         }
     }
 

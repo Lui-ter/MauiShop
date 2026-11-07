@@ -28,9 +28,6 @@ namespace petshop
             dbContext.Dispose();
 
             return builder.Build();
-
-            Routing.RegisterRoute(nameof(Views.DetalleProducto), typeof(Views.DetalleProducto));
-            Routing.RegisterRoute(nameof(Views.HelpSupportDetailPage), typeof(Views.HelpSupportDetailPage));
         }
     }
 }

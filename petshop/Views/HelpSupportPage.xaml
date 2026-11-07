@@ -10,11 +10,10 @@
     </ContentPage.BindingContext>
 
     <Grid RowDefinitions="Auto,*">
+        <Grid.BindingContext>
+            <views:HelpSupportData/>
+        </Grid.BindingContext>
         <Label Text="{Binding Clients.Count,Mode=OneWay}"/>
-        <CollectionView 
-            Grid.Row="1"
-            SelectionMode="Single"
-            SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}"
-            ItemsSource="{Binding Clients,Mode=OneWay}"/>
+        <CollectionView Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}" ItemsSource="{Binding Clients,Mode=OneWay}"/>
     </Grid>
 </ContentPage>

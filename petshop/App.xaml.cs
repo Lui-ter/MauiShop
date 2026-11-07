@@ -1,6 +1,4 @@
-﻿using petshop.Views;
-
-namespace petshop;
+﻿namespace petshop;
 
 public partial class App : Application
 {
@@ -11,6 +9,8 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Window(new About());
+        // About is the application's FlyoutPage root. FlyoutPage and Shell
+        // cannot be nested in the same visual tree.
+        return new Window(new Views.About());
     }
 }
