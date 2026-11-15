@@ -10,6 +10,8 @@ namespace petshop.DataAcces
 
         public DbSet<Client> Clients { get; set; }
 
+        public DbSet<Compra> Compras { get; set; }
+
 
         protected override void OnConfiguring(
             DbContextOptionsBuilder optionsBuilder)
@@ -70,4 +72,9 @@ namespace petshop.DataAcces
         string Nombre,
         string Apellido,
         string Direccion);
+
+    public record Compra(int ClientId, int ProductId, int Cantidad)
+    {
+        public int Id { get; init; }
+    }
 }
