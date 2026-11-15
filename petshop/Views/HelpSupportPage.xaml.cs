@@ -1,84 +1,39 @@
+using Microsoft.Extensions.DependencyInjection;
 using petshop.DataAcces;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+using petshop.ViewModels;
 
 namespace petshop.Views;
 
 public partial class HelpSupportPage : ContentPage
 {
-    public HelpSupportPage()
+    private readonly HelpSupportViewModel _viewModel;
+
+    public HelpSupportPage(HelpSupportViewModel viewModel)
     {
         InitializeComponent();
+        _viewModel = viewModel;
+        BindingContext = viewModel;
+        Content.BindingContext = viewModel;
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    public HelpSupportPage()
+        : this(ResolveViewModel())
     {
-        var dataObject = Resources["data"] as HelpSupportData;
-        dataObject.visitasPendientes = 30;
-    }
-}
-
-public class HelpSupportData : BindingUtilObject
-{
-    public HelpSupportData()
-    {
-        var database = new ShopDbContext();
-        Clients = new ObservableCollection<Client>(database.Clients);
-        PropertyChanged += HelpSupportData_PropertyChanged;
     }
 
-    private async void HelpSupportData_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    private static HelpSupportViewModel ResolveViewModel()
     {
-        if (e.PropertyName == nameof(ClienteSeleccionado))
+        var services = Application.Current?.Handler?.MauiContext?.Services
+            ?? throw new InvalidOperationException("No se encontró el contenedor de dependencias de MAUI.");
+
+        return services.GetRequiredService<HelpSupportViewModel>();
+    }
+
+    private async void OnClientSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is Client client)
         {
-            if (Application.Current?.Windows.FirstOrDefault()?.Page is About
-                { Detail: NavigationPage navigation })
-            {
-                await navigation.PushAsync(new HelpSupportDetailPage(ClienteSeleccionado.Id));
-            }
-        }
-    }
-
-    public int _visitasPendientes;
-    public int visitasPendientes
-    {
-        get { return _visitasPendientes; }
-        set
-        {
-            if (_visitasPendientes != value)
-            {
-                _visitasPendientes = value;
-                RaisePropertyChanged();
-            }
-        }
-    }
-    private ObservableCollection<Client> _clients;
-
-    public ObservableCollection<Client> Clients
-    {
-        get { return _clients; }
-        set
-        {
-            if (Clients != value)
-            {
-                _clients = value;
-                RaisePropertyChanged();
-            }
-        }
-    }
-
-    public Client _clienteSeleccionado;
-
-    public Client ClienteSeleccionado
-    {
-        get { return _clienteSeleccionado; }
-        set
-        {
-            if (_clienteSeleccionado != value)
-            {
-                _clienteSeleccionado = value;
-                RaisePropertyChanged();
-            }
+            await _viewModel.NavigateToDetailAsync(client);
         }
     }
 }

@@ -1,3 +1,5 @@
+using Microsoft.Extensions.DependencyInjection;
+
 namespace petshop.Views;
 
 public partial class MainContainer : ContentPage
@@ -87,7 +89,14 @@ public partial class MainContainer : ContentPage
 
     public void MostrarHelp()
     {
-        Contenido.Content = new HelpSupportPage().Content;
+        var services = Application.Current?.Handler?.MauiContext?.Services
+            ?? throw new InvalidOperationException("No se encontró el contenedor de dependencias de MAUI.");
+        var page = services.GetRequiredService<HelpSupportPage>();
+        var content = page.Content
+            ?? throw new InvalidOperationException("La página de soporte no contiene una vista.");
+
+        content.BindingContext = page.BindingContext;
+        Contenido.Content = content;
     }
 }
 
