@@ -1,9 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using petshop.Services;
 
 namespace petshop.DataAcces
 {
     public class ShopDbContext : DbContext
     {
+        public ShopDbContext()
+        {
+        }
+
+        public ShopDbContext(DbContextOptions<ShopDbContext> options)
+            : base(options)
+        {
+        }
+
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Product> Products { get; set; }
@@ -13,10 +23,12 @@ namespace petshop.DataAcces
         public DbSet<Compra> Compras { get; set; }
 
 
-        protected override void OnConfiguring(
-            DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase("ShopPet");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlite($"Data Source={DatabasePath.GetPath()}");
+            }
         }
 
 

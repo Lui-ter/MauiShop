@@ -21,6 +21,11 @@ public partial class About : FlyoutPage
         MostrarHelp();
     }
 
+    private void OnComprasClicked(object? sender, TappedEventArgs e)
+    {
+        MostrarCompras();
+    }
+
     public void MostrarHome()
     {
         if (MainContainer.Current != null && Detail is NavigationPage nav && nav.CurrentPage is MainContainer)
@@ -34,6 +39,8 @@ public partial class About : FlyoutPage
 
         btnMenuHome.BackgroundColor = Color.FromArgb("#2A2A2A");
         btnMenuAbout.BackgroundColor = Colors.Transparent;
+        btnMenuHelp.BackgroundColor = Colors.Transparent;
+        btnMenuCompras.BackgroundColor = Colors.Transparent;
         IsPresented = false;
     }
 
@@ -52,6 +59,8 @@ public partial class About : FlyoutPage
 
         btnMenuHome.BackgroundColor = Colors.Transparent;
         btnMenuAbout.BackgroundColor = Color.FromArgb("#2A2A2A");
+        btnMenuHelp.BackgroundColor = Colors.Transparent;
+        btnMenuCompras.BackgroundColor = Colors.Transparent;
         IsPresented = false;
     }
 
@@ -70,7 +79,28 @@ public partial class About : FlyoutPage
 
         btnMenuHome.BackgroundColor = Colors.Transparent;
         btnMenuAbout.BackgroundColor = Colors.Transparent;
-        btnMenuAbout.BackgroundColor = Color.FromArgb("#2A2A2A");
+        btnMenuHelp.BackgroundColor = Color.FromArgb("#2A2A2A");
+        btnMenuCompras.BackgroundColor = Colors.Transparent;
+        IsPresented = false;
+    }
+
+    public void MostrarCompras()
+    {
+        if (MainContainer.Current != null && Detail is NavigationPage nav && nav.CurrentPage is MainContainer)
+        {
+            MainContainer.Current.MostrarCompras();
+        }
+        else
+        {
+            var mc = new MainContainer();
+            Detail = new NavigationPage(mc);
+            mc.MostrarCompras();
+        }
+
+        btnMenuHome.BackgroundColor = Colors.Transparent;
+        btnMenuAbout.BackgroundColor = Colors.Transparent;
+        btnMenuHelp.BackgroundColor = Colors.Transparent;
+        btnMenuCompras.BackgroundColor = Color.FromArgb("#2A2A2A");
         IsPresented = false;
     }
 }

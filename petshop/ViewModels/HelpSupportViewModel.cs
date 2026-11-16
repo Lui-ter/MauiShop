@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 using petshop.DataAcces;
 using petshop.Services;
 using System.Collections.ObjectModel;
@@ -8,12 +9,16 @@ namespace petshop.ViewModels;
 public partial class HelpSupportViewModel : ViewModelGlobal
 {
     private readonly INavegacionService _navegacionService;
+    private readonly IDbContextFactory<ShopDbContext> _dbContextFactory;
 
-    public HelpSupportViewModel(INavegacionService navegacionService)
+    public HelpSupportViewModel(
+        INavegacionService navegacionService,
+        IDbContextFactory<ShopDbContext> dbContextFactory)
     {
         _navegacionService = navegacionService;
+        _dbContextFactory = dbContextFactory;
 
-        using var database = new ShopDbContext();
+        using var database = _dbContextFactory.CreateDbContext();
         Clients = new ObservableCollection<Client>(database.Clients);
     }
 

@@ -1,5 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.EntityFrameworkCore;
 using petshop.DataAcces;
+using petshop.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -10,16 +13,24 @@ public partial class HelpSupportDetailViewModel : ViewModelGlobal, IQueryAttribu
     private readonly MiComando _addCommand;
     private readonly MiComando _increaseQuantityCommand;
     private readonly MiComando _decreaseQuantityCommand;
+    private readonly IDbContextFactory<ShopDbContext> _dbContextFactory;
+    private readonly INavegacionService _navegacionService;
 
-    public HelpSupportDetailViewModel()
+    public HelpSupportDetailViewModel(
+        IDbContextFactory<ShopDbContext> dbContextFactory,
+        INavegacionService navegacionService)
     {
-        using var database = new ShopDbContext();
+        _dbContextFactory = dbContextFactory;
+        _navegacionService = navegacionService;
+
+        using var database = _dbContextFactory.CreateDbContext();
         Products = new ObservableCollection<Product>(database.Products);
         Compras = new ObservableCollection<Compra>(database.Compras);
 
         _addCommand = new MiComando(AgregarCompra, PuedeAgregarCompra);
         _increaseQuantityCommand = new MiComando(() => Cantidad++, () => Cantidad < 100);
         _decreaseQuantityCommand = new MiComando(() => Cantidad--, () => Cantidad > 1);
+        FinalizarCompraCommand = new AsyncRelayCommand(_navegacionService.NavegarAComprasAsync);
         Cantidad = 1;
     }
 
@@ -43,6 +54,8 @@ public partial class HelpSupportDetailViewModel : ViewModelGlobal, IQueryAttribu
     public ICommand IncreaseQuantityCommand => _increaseQuantityCommand;
 
     public ICommand DecreaseQuantityCommand => _decreaseQuantityCommand;
+
+    public IAsyncRelayCommand FinalizarCompraCommand { get; }
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
@@ -77,7 +90,7 @@ public partial class HelpSupportDetailViewModel : ViewModelGlobal, IQueryAttribu
             throw new InvalidOperationException("Selecciona un producto antes de agregar la compra.");
         var compra = new Compra(ClienteId, producto.Id, Cantidad);
 
-        using var database = new ShopDbContext();
+        using var database = _dbContextFactory.CreateDbContext();
         database.Compras.Add(compra);
         database.SaveChanges();
         Compras.Add(compra);

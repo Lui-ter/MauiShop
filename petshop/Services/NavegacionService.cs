@@ -15,13 +15,7 @@ public sealed class NavegacionService : INavegacionService
 
     public async Task NavegarAClienteAsync(int clienteId)
     {
-        var window = Application.Current?.Windows.FirstOrDefault()
-            ?? throw new InvalidOperationException("No se encontró una ventana activa.");
-
-        if (window.Page is not About { Detail: NavigationPage navigationPage })
-        {
-            throw new InvalidOperationException("No se encontró la navegación principal de la aplicación.");
-        }
+        var navigationPage = ObtenerPaginaNavegacion();
 
         var page = _serviceProvider.GetRequiredService<HelpSupportDetailPage>();
         if (page.BindingContext is not IQueryAttributable viewModel)
@@ -31,5 +25,22 @@ public sealed class NavegacionService : INavegacionService
 
         viewModel.ApplyQueryAttributes(new Dictionary<string, object> { ["id"] = clienteId });
         await navigationPage.PushAsync(page);
+    }
+
+    public async Task NavegarAComprasAsync()
+    {
+        var navigationPage = ObtenerPaginaNavegacion();
+        var page = _serviceProvider.GetRequiredService<ComprasPage>();
+        await navigationPage.PushAsync(page);
+    }
+
+    private NavigationPage ObtenerPaginaNavegacion()
+    {
+        var window = Application.Current?.Windows.FirstOrDefault()
+            ?? throw new InvalidOperationException("No se encontró una ventana activa.");
+
+        return window.Page is About { Detail: NavigationPage navigationPage }
+            ? navigationPage
+            : throw new InvalidOperationException("No se encontró la navegación principal de la aplicación.");
     }
 }

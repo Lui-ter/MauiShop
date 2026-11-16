@@ -98,5 +98,17 @@ public partial class MainContainer : ContentPage
         content.BindingContext = page.BindingContext;
         Contenido.Content = content;
     }
+
+    public void MostrarCompras()
+    {
+        var services = Application.Current?.Handler?.MauiContext?.Services
+            ?? throw new InvalidOperationException("No se encontró el contenedor de dependencias de MAUI.");
+        var page = services.GetRequiredService<ComprasPage>();
+        var content = page.Content
+            ?? throw new InvalidOperationException("La página de compras no contiene una vista.");
+
+        content.BindingContext = page.BindingContext;
+        Contenido.Content = content;
+    }
 }
 

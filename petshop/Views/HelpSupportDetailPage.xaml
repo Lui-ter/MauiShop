@@ -4,7 +4,7 @@
              x:Class="petshop.Views.HelpSupportDetailPage"
              Title="{Binding ClienteId, StringFormat='Cliente: {0}'}">
 
-    <Grid RowDefinitions="2*,Auto,*" ColumnDefinitions="*,*">
+    <Grid RowDefinitions="2*,Auto,*,Auto" ColumnDefinitions="*,*">
         <VerticalStackLayout Grid.Row="0" Grid.Column="0">
             <CollectionView
                 ItemsSource="{Binding Products}"
@@ -76,5 +76,10 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <Button Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Text="Finalizar Compra"
+                Command="{Binding FinalizarCompraCommand}" />
     </Grid>
 </ContentPage>
